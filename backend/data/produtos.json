@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nome": "Camisa Polo",
+    "preco": 99.9,
+    "descricao": "Camisa polo azul de algodão",
+    "imagem": "src/assets/camisapolo.jpg"
+  },
+  {
+    "id": 2,
+    "nome": "Calça Jeans",
+    "preco": 159.9,
+    "descricao": "Calça jeans slim masculina",
+    "imagem": "src/assets/calcajeans.jpg"
+  },
+  {
+    "id": 3,
+    "nome": "Jaqueta de Couro",
+    "preco": 299.9,
+    "descricao": "Jaqueta de couro sintético preta",
+    "imagem": "src/assets/jaquetadecouro.jpg"
+  }
+]

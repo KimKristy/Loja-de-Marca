@@ -1,32 +1,26 @@
+import { useEffect, useState } from "react";
 import CardProduto from "../components/CardProduto";
 
 const Home = () => {
-  const produtos = [
-    {
-      nome: "Camisa Polo",
-      preco: 99.9,
-      descricao: "Camisa polo azul de algodão",
-      imagem: "src/assets/camisapolo.jpg",
-    },
-    {
-      nome: "Calça Jeans",
-      preco: 159.9,
-      descricao: "Calça jeans slim masculina",
-      imagem: "src/assets/calcajeans.jpg",
-    },
-    {
-      nome: "Jaqueta de Couro",
-      preco: 299.9,
-      descricao: "Jaqueta de couro sintético preta",
-      imagem: "src/assets/jaquetadecouro.jpg",
-    },
-  ];
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/produtos")
+      .then((res) => res.json())
+      .then((data) => setProdutos(data))
+      .catch((err) => console.error("Erro ao carregar produtos:", err));
+  }, []);
 
   return (
     <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {produtos.map((produto, index) => (
-        <CardProduto key={index} {...produto} />
-      ))}
+      {produtos.length > 0 ? (
+        produtos.map((produto) => <CardProduto key={produto.id} {...produto} />)
+      ) : (
+        <p className="text-center text-gray-500 col-span-full">
+          {" "}
+          Carregando produtos...
+        </p>
+      )}
     </div>
   );
 };
