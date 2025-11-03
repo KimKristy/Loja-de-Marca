@@ -17,7 +17,6 @@ const Home = () => {
         produtos.map((produto) => <CardProduto key={produto.id} {...produto} />)
       ) : (
         <p className="text-center text-gray-500 col-span-full">
-          {" "}
           Carregando produtos...
         </p>
       )}

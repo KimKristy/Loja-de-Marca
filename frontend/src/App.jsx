@@ -6,6 +6,7 @@ import Produtos from "./routes/Produtos";
 import Error from "./routes/Error";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import AdicionarProdutos from "./routes/AdicionarProdutos";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="*" element={<Error />} />
+        <Route path="/adicionar" element={<AdicionarProdutos/>} />
       </Routes>
 
       <Footer />
