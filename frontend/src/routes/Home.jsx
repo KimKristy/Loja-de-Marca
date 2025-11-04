@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CardProduto from "../components/CardProduto";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [produtos, setProdutos] = useState([]);
@@ -12,14 +13,29 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {produtos.length > 0 ? (
-        produtos.map((produto) => <CardProduto key={produto.id} {...produto} />)
-      ) : (
-        <p className="text-center text-gray-500 col-span-full">
-          Carregando produtos...
-        </p>
-      )}
+    <div className="p-8">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Produtos</h1>
+        <Link
+          to="/adicionar"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          {" "}
+          + Adiconar Produto
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {produtos.length > 0 ? (
+          produtos.map((produto) => (
+            <CardProduto key={produto.id} {...produto} />
+          ))
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">
+            Carregando produtos...
+          </p>
+        )}
+      </div>
     </div>
   );
 };
