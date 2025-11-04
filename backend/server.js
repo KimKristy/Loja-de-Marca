@@ -40,6 +40,33 @@ app.post("/produtos", (req, res) => {
   });
 });
 
+app.put("/produtos/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const produtoAtualizado = req.body;
+
+  fs.readFile(caminhoProdutos, "utf-8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro ao ler produtos" });
+    }
+
+    let produtos = JSON.parse(data);
+    const index = produtos.findIndex((p) => p.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({ error: "Produto não encontrado" });
+    }
+
+    produtos[index] = { ...produtos[index], ...produtoAtualizado };
+
+    fs.writeFile(caminhoProdutos, JSON.stringify(produtos, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Erro ao salvar alterações" });
+      }
+      res.status(200).json(produtos[index]);
+    });
+  });
+});
+
 const PORT = 5001;
 app.listen(PORT, () =>
   console.log(`Servidor rodando em http://localhost:${PORT}`)

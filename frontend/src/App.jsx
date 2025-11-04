@@ -7,6 +7,7 @@ import Error from "./routes/Error";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import AdicionarProdutos from "./routes/AdicionarProdutos";
+import EditarProduto from "./routes/EditarProduto";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="*" element={<Error />} />
-        <Route path="/adicionar" element={<AdicionarProdutos/>} />
+        <Route path="/adicionar" element={<AdicionarProdutos />} />
+        <Route path="/editar/:id" element={<EditarProduto />} />
       </Routes>
 
       <Footer />

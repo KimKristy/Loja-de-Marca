@@ -9,7 +9,7 @@
   {
     "id": 2,
     "nome": "Calça Jeans",
-    "preco": 159.9,
+    "preco": "160",
     "descricao": "Calça jeans slim masculina",
     "imagem": "src/assets/calcajeans.jpg"
   },
