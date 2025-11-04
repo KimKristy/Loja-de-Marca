@@ -1,12 +1,5 @@
 [
   {
-    "id": 1,
-    "nome": "Camisa Polo",
-    "preco": 99.9,
-    "descricao": "Camisa polo azul de algodão",
-    "imagem": "src/assets/camisapolo.jpg"
-  },
-  {
     "id": 2,
     "nome": "Calça Jeans",
     "preco": "160",

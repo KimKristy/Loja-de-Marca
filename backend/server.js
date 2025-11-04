@@ -67,6 +67,30 @@ app.put("/produtos/:id", (req, res) => {
   });
 });
 
+app.delete("/produtos/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  fs.readFile(caminhoProdutos, "utf-8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro ao ler produtos" });
+    }
+
+    let produtos = JSON.parse(data);
+    const novoArray = produtos.filter((p) => p.id !== id);
+
+    if (novoArray.length === produtos.length) {
+      return res.status(404).json({ error: "Produto não encontrado" });
+    }
+
+    fs.writeFile(caminhoProdutos, JSON.stringify(novoArray, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Erro ao excluir produto" });
+      }
+      res.status(200).json({ message: "Produto excluído com sucesso!" });
+    });
+  });
+});
+
 const PORT = 5001;
 app.listen(PORT, () =>
   console.log(`Servidor rodando em http://localhost:${PORT}`)
