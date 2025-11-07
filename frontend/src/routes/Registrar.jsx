@@ -1,39 +1,44 @@
 import { useState } from "react";
 
-const Login = () => {
+const Registrar = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleLogin = (e) => {
+  const handleRegistrer = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5001/login", {
+    fetch("http://localhost:5001/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, senha }),
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Erro no login");
+        if (!res.ok) throw new Error("Erro no registro");
         return res.json();
       })
       .then(() => {
-        alert("Login realizado com sucesso!");
-        localStorage.setItem("logado", "true");
-        window.location.href = "/";
+        alert("Usuário registrado com sucesso!");
+        window.location.href = "/login";
       })
-      .catch(() => alert("E-mail ou senha incorretos."));
+      .catch((err) => {
+        alert(
+          "Erro ao registrar. Tente outro e-mail ou verifique sua conexão."
+        );
+        console.error(err);
+      });
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegistrer}
         className="bg-white p-6 rounded-xl shadow-md w-full max-w-sm space-y-4"
       >
-        <h2 className="text-2xl font-bold text-center">Login</h2>
+        <h2 className="text-2xl font-bold text-center">Registrar</h2>
 
         <input
           type="email"
+          name="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -42,6 +47,7 @@ const Login = () => {
         />
         <input
           type="password"
+          name="senha"
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
@@ -51,15 +57,15 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
         >
-          Entrar
+          Registrar
         </button>
 
         <p className="text-center text-sm">
-          Não tem uma conta? {""}
-          <a href="/registrar" className="text-blue-500 hover:underline">
-            Registrar-se
+          Já tem uma conta? {""}
+          <a href="/login" className="text-blue-500 hover:underline">
+            Fazer Login
           </a>
         </p>
       </form>
@@ -67,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registrar;

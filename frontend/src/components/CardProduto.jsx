@@ -15,6 +15,8 @@ const CardProduto = ({ id, nome, preco, descricao, imagem }) => {
     }
   };
 
+  const logado = localStorage.getItem("logado") === "true";
+
   return (
     <div className="bg-white rounded-xl shadow-md p-4 hover:scale-105 transition-transform">
       <img
@@ -26,20 +28,22 @@ const CardProduto = ({ id, nome, preco, descricao, imagem }) => {
       <p className="text-gray-600">{descricao}</p>
       <p className="text-blue-500 font-semibold mt-2">R$ {preco}</p>
 
-      <div className="flex gap-2 mt-3">
-        <Link to={`/editar/${id}`} className="flex-1">
-          <button className="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
-            Editar
-          </button>
-        </Link>
+      {logado && (
+        <div className="flex gap-2 mt-3">
+          <Link to={`/editar/${id}`} className="flex-1">
+            <button className="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
+              Editar
+            </button>
+          </Link>
 
-        <button
-          onClick={handleDelete}
-          className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-600"
-        >
-          Excluir
-        </button>
-      </div>
+          <button
+            onClick={handleDelete}
+            className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-600"
+          >
+            Excluir
+          </button>
+        </div>
+      )}
     </div>
   );
 };

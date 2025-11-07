@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import AdicionarProdutos from "./routes/AdicionarProdutos";
 import EditarProduto from "./routes/EditarProduto";
+import Registrar from "./routes/Registrar";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="*" element={<Error />} />
         <Route path="/adicionar" element={<AdicionarProdutos />} />
         <Route path="/editar/:id" element={<EditarProduto />} />
+        <Route path="/registrar" element={<Registrar />} />
       </Routes>
 
       <Footer />

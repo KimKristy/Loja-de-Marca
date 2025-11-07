@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import fs from "fs";
+import bcrypt from "bcryptjs";
 
 const caminhoProdutos = "./data/produtos.json";
 
@@ -88,6 +89,64 @@ app.delete("/produtos/:id", (req, res) => {
       }
       res.status(200).json({ message: "Produto excluído com sucesso!" });
     });
+  });
+});
+
+app.post("/login", (req, res) => {
+  const { email, senha } = req.body;
+
+  fs.readFile("./data/usuarios.json", "utf-8", (err, data) => {
+    if (err) return res.status(500).json({ error: "Erro ao ler usuários" });
+
+    const usuarios = JSON.parse(data);
+    const usuario = usuarios.find((u) => u.email === email);
+
+    if (!usuario) {
+      return res.status(401).json({ error: "Usuário não encontrado" });
+    }
+
+    const senhaValida = bcrypt.compareSync(senha, usuario.senha);
+    if (!senhaValida) {
+      return res.status(401).json({ error: "Senha incorreta" });
+    }
+    res.status(200).json({ message: "Login realizado com sucesso!" });
+  });
+});
+
+app.post("/register", (req, res) => {
+  const { email, senha } = req.body;
+
+  if (!email || !senha) {
+    return res.status(400).json({ error: "E-mail e senha são obrigatórios" });
+  }
+
+  fs.readFile("./data/usuarios.json", "utf-8", (err, data) => {
+    if (err) return res.status(500).json({ error: "Erro ao ler usuários" });
+
+    const usuarios = JSON.parse(data);
+
+    if (usuarios.find((u) => u.email === email)) {
+      return res.status(400).json({ error: "E-mail já cadastrado" });
+    }
+
+    const hash = bcrypt.hashSync(senha, 10);
+    const novoUsuario = {
+      id: usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1,
+      email,
+      senha: hash,
+    };
+
+    usuarios.push(novoUsuario);
+
+    fs.writeFile(
+      "./data/usuarios.json",
+      JSON.stringify(usuarios, null, 2),
+      (err) => {
+        if (err)
+          return res.status(500).json({ error: "Erro ao salvar novo usuário" });
+        res.status(201).json({ message: "Usuário registrado com sucesso!" });
+      }
+    );
   });
 });
 
