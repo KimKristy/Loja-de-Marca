@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import AdicionarProdutos from "./routes/AdicionarProdutos";
 import EditarProduto from "./routes/EditarProduto";
 import Registrar from "./routes/Registrar";
+import RotaPrivada from "./routes/RotaPrivada";
 
 function App() {
   return (
@@ -18,11 +19,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registrar" element={<Registrar />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="*" element={<Error />} />
-        <Route path="/adicionar" element={<AdicionarProdutos />} />
-        <Route path="/editar/:id" element={<EditarProduto />} />
-        <Route path="/registrar" element={<Registrar />} />
+        <Route
+          path="/adicionar"
+          element={
+            <RotaPrivada>
+              <AdicionarProdutos />
+            </RotaPrivada>
+          }
+        />
+        <Route
+          path="/editar/:id"
+          element={
+            <RotaPrivada>
+              <EditarProduto />
+            </RotaPrivada>
+          }
+        />
       </Routes>
 
       <Footer />
