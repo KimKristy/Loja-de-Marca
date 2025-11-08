@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Registrar = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [tipoMensagem, setTipoMensagem] = useState("");
 
   const handleRegistrer = (e) => {
     e.preventDefault();
@@ -17,16 +19,25 @@ const Registrar = () => {
         return res.json();
       })
       .then(() => {
-        alert("Usuário registrado com sucesso!");
-        window.location.href = "/login";
+        setTipoMensagem("success");
+        setMensagem(
+          "Usuário registrado com sucesso! Faça login para continuar."
+        );
       })
       .catch((err) => {
-        alert(
+        setTipoMensagem("error");
+        setMensagem(
           "Erro ao registrar. Tente outro e-mail ou verifique sua conexão."
         );
-        console.error(err);
       });
   };
+
+  useEffect(() => {
+    if (mensagem) {
+      const timer = setTimeout(() => setMensagem(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [mensagem]);
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -35,6 +46,16 @@ const Registrar = () => {
         className="bg-white p-6 rounded-xl shadow-md w-full max-w-sm space-y-4"
       >
         <h2 className="text-2xl font-bold text-center">Registrar</h2>
+
+        {mensagem && (
+          <p
+            className={`text-center text-sm font-medium transition-opacity duration-300 ${
+              tipoMensagem === "success" ? "text-green-600" : "text-red-500"
+            }`}
+          >
+            {mensagem}{" "}
+          </p>
+        )}
 
         <input
           type="email"
@@ -54,6 +75,10 @@ const Registrar = () => {
           className="w-full p-2 border rounded"
           required
         />
+
+        {mensagem && (
+          <p className="text-center text-sm text-gray-600">{mensagem} </p>
+        )}
 
         <button
           type="submit"

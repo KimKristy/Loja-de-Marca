@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [tipoMensagem, setTipoMensagem] = useState("info");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -17,12 +19,25 @@ const Login = () => {
         return res.json();
       })
       .then(() => {
-        alert("Login realizado com sucesso!");
+        setTipoMensagem("success");
+        setMensagem("Login realizado com sucesso!");
         localStorage.setItem("logado", "true");
-        window.location.href = "/";
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1500);
       })
-      .catch(() => alert("E-mail ou senha incorretos."));
+      .catch(() => {
+        setTipoMensagem("error");
+        setMensagem("E-mail ou senha incorretos.");
+      });
   };
+
+  useEffect(() => {
+    if (mensagem) {
+      const timer = setTimeout(() => setMensagem(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [mensagem]);
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -31,6 +46,17 @@ const Login = () => {
         className="bg-white p-6 rounded-xl shadow-md w-full max-w-sm space-y-4"
       >
         <h2 className="text-2xl font-bold text-center">Login</h2>
+
+        {mensagem && (
+          <p
+            className={`text-center text-sm font-medium transition-opacity duration-300 ${
+              tipoMensagem === "success" ? "text-green-600" : "text-red-500"
+            }`}
+          >
+            {" "}
+            {mensagem}{" "}
+          </p>
+        )}
 
         <input
           type="email"
@@ -48,6 +74,10 @@ const Login = () => {
           className="w-full p-2 border rounded"
           required
         />
+
+        {mensagem && (
+          <p className="text-center text-sm text-gray-600">{mensagem}</p>
+        )}
 
         <button
           type="submit"

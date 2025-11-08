@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [produtos, setProdutos] = useState([]);
 
+  const logado = localStorage.getItem("logado") === "true"
+
   useEffect(() => {
     fetch("http://localhost:5001/produtos")
       .then((res) => res.json())
@@ -16,13 +18,15 @@ const Home = () => {
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Produtos</h1>
-        <Link
+        {logado && (
+          <Link
           to="/adicionar"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-all duration-200"
         >
           {" "}
-          + Adiconar Produto
+          + Adicionar Produto
         </Link>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

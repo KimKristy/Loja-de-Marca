@@ -3,5 +3,15 @@
     "id": 1,
     "email": "abc@gmail.com",
     "senha": "$2b$10$jVQti/to3dnoohNWnbklWOdKbhgJoE/E11A/GhzDYfrAz6j/X66gy"
+  },
+  {
+    "id": 2,
+    "email": "teste@gmail.com",
+    "senha": "$2b$10$B1urLby8ofZdYhG16CDUhO1yjFMdisYI53amqvf2B493iia84WClW"
+  },
+  {
+    "id": 3,
+    "email": "teste@teste.com",
+    "senha": "$2b$10$XI4CWJaSsWWBwU7qL5uS8.LF.LH/SBuZ/pLqmqYzu5JM8R4Q/0/ka"
   }
 ]
