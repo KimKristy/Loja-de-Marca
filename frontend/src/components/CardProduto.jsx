@@ -18,15 +18,15 @@ const CardProduto = ({ id, nome, preco, descricao, imagem }) => {
   const logado = localStorage.getItem("logado") === "true";
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 hover:scale-105 transition-transform">
+    <div className="bg-white/10 border border-cyan-500/20 rounded-xl shadow-lg backdrop-blur-md p-4 hover:shadow-cyan-500/40 hover:-translate-y-2 transition-all duration-300">
       <img
         src={imagem}
         alt={nome}
-        className="w-full h-48 object-cover rounded-lg mb-3"
+        className="w-full h-48 object-cover rounded-lg mb-4"
       />
-      <h2 className="text-xl font-bold">{nome}</h2>
-      <p className="text-gray-600">{descricao}</p>
-      <p className="text-blue-500 font-semibold mt-2">R$ {preco}</p>
+      <h2 className="text-xl font-semibold text-cyan-300">{nome}</h2>
+      <p className="text-gray-300 mt-2">{descricao}</p>
+      <p className="text-lg font-bold text-cyan-400 mt-4">R$ {preco}</p>
 
       {logado && (
         <div className="flex gap-2 mt-3">

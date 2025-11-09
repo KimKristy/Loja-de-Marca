@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [mensagem, setMensagem] = useState("");
-  const [tipoMensagem, setTipoMensagem] = useState("info");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,51 +17,26 @@ const Login = () => {
         return res.json();
       })
       .then(() => {
-        setTipoMensagem("success");
-        setMensagem("Login realizado com sucesso!");
         localStorage.setItem("logado", "true");
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 1500);
+        window.location.href = "/";
       })
-      .catch(() => {
-        setTipoMensagem("error");
-        setMensagem("E-mail ou senha incorretos.");
-      });
+      .catch(() => alert("E-mail ou senha incorretos."));
   };
 
-  useEffect(() => {
-    if (mensagem) {
-      const timer = setTimeout(() => setMensagem(""), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [mensagem]);
-
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="relative z-10 min-h-screen flex items-center justify-center text-white bg-white/5 rounded-2xl border border-white/20 animate-fadeIn">
       <form
         onSubmit={handleLogin}
-        className="bg-white p-6 rounded-xl shadow-md w-full max-w-sm space-y-4"
+        className="bg-white/10 border border-cyan-500/30 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 w-full max-w-sm text-center"
       >
-        <h2 className="text-2xl font-bold text-center">Login</h2>
-
-        {mensagem && (
-          <p
-            className={`text-center text-sm font-medium transition-opacity duration-300 ${
-              tipoMensagem === "success" ? "text-green-600" : "text-red-500"
-            }`}
-          >
-            {" "}
-            {mensagem}{" "}
-          </p>
-        )}
+        <h2 className="text-3xl font-bold text-cyan-300 mb-6">Login</h2>
 
         <input
           type="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 mb-4 rounded bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400"
           required
         />
         <input
@@ -71,24 +44,20 @@ const Login = () => {
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 mb-6 rounded bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400"
           required
         />
 
-        {mensagem && (
-          <p className="text-center text-sm text-gray-600">{mensagem}</p>
-        )}
-
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg shadow-md hover:shadow-cyan-500/30 transition-all duration-300"
         >
           Entrar
         </button>
 
-        <p className="text-center text-sm">
-          Não tem uma conta? {""}
-          <a href="/registrar" className="text-blue-500 hover:underline">
+        <p className="text-sm text-gray-400 mt-4">
+          Não tem uma conta?{" "}
+          <a href="/registrar" className="text-cyan-400 hover:underline">
             Registrar-se
           </a>
         </p>

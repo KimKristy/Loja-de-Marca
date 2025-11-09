@@ -1,66 +1,57 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
-  const [mensagem, setMensagem] = useState("");
-  const [tipoMensagem, setTipoMensagem] = useState("info");
+  const navigate = useNavigate();
   const logado = localStorage.getItem("logado") === "true";
 
   const handleLogout = () => {
     localStorage.removeItem("logado");
-    setTipoMensagem("success");
-    setMensagem("Você saiu da conta.");
-    setTimeout(() => {
-      setMensagem("");
-      window.location.href = "/";
-    }, 1500);
+    navigate("/login");
   };
 
-  useEffect(() => {
-    if (mensagem) {
-      const timer = setTimeout(() => setMensagem(""), 3000);
-      return () => clearTimeout();
-    }
-  }, [mensagem]);
-
   return (
-    <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">Loja de Marcas</h1>
+    <nav className="fixed top-0 left-0 w-full z-20 backdrop-blur-md bg-white/8 border-b border-cyan-500/30 shadow-lg overflow-hidden tracking-wide">
+      {/* fundo animado */}
+      <div className="absolute inset-0 opacity-40 animate-pulseNav pointer-events-none"></div>
 
-      {mensagem && (
-        <div
-          className={`absolute top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow-md text-sm font-medium transition-opacity duration-300 ${
-            tipoMensagem === "success"
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
-          }`}
+      <div className="relative max-w-7xl mx-auto flex justify-between items-center px-6 py-3 text-white">
+        <Link
+          to="/"
+          className="text-xl font-bold text-cyan-400 hover:text-cyan-300 transition-all"
         >
-          {mensagem}{" "}
-        </div>
-      )}
-
-      <div className="flex gap-4 ml-auto">
-        <Link to="/" className="hover:text-gray-300">
-          Home
-        </Link>
-        <Link to="/sobre" className="hover:text-gray-300">
-          Sobre
+          Loja de Marcas
         </Link>
 
-        {!logado ? (
-          <Link to="/login" className="hover:text-gray-300">
-            Login
+        <div className="flex items-center gap-6">
+          <Link
+            to="/"
+            className="hover:text-cyan-300 transition-all text-sm font-medium"
+          >
+            Home
           </Link>
-        ) : (
-          <>
+          <Link
+            to="/sobre"
+            className="hover:text-cyan-300 transition-all text-sm font-medium"
+          >
+            Sobre
+          </Link>
+
+          {!logado ? (
+            <Link
+              to="/login"
+              className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-1.5 rounded-lg shadow-md text-sm font-medium transition-all"
+            >
+              Login
+            </Link>
+          ) : (
             <button
               onClick={handleLogout}
-              className="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition-all"
+              className="bg-red-600 hover:bg-red-500 text-white px-4 py-1.5 rounded-lg shadow-md text-sm font-medium transition-all"
             >
               Sair
             </button>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </nav>
   );

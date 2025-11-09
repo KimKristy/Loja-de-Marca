@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Registrar = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [mensagem, setMensagem] = useState("");
-  const [tipoMensagem, setTipoMensagem] = useState("");
 
-  const handleRegistrer = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
     fetch("http://localhost:5001/register", {
@@ -19,78 +17,49 @@ const Registrar = () => {
         return res.json();
       })
       .then(() => {
-        setTipoMensagem("success");
-        setMensagem(
-          "Usuário registrado com sucesso! Faça login para continuar."
-        );
+        window.location.href = "/login";
       })
-      .catch((err) => {
-        setTipoMensagem("error");
-        setMensagem(
-          "Erro ao registrar. Tente outro e-mail ou verifique sua conexão."
-        );
-      });
+      .catch(() =>
+        alert("Erro ao registrar: e-mail já existente ou problema no servidor.")
+      );
   };
 
-  useEffect(() => {
-    if (mensagem) {
-      const timer = setTimeout(() => setMensagem(""), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [mensagem]);
-
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="relative z-10 min-h-screen flex items-center justify-center text-white bg-white/5 rounded-2xl border border-white/20 animate-fadeIn">
       <form
-        onSubmit={handleRegistrer}
-        className="bg-white p-6 rounded-xl shadow-md w-full max-w-sm space-y-4"
+        onSubmit={handleRegister}
+        className="bg-white/10 border border-cyan-500/30 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 w-full max-w-sm text-center"
       >
-        <h2 className="text-2xl font-bold text-center">Registrar</h2>
-
-        {mensagem && (
-          <p
-            className={`text-center text-sm font-medium transition-opacity duration-300 ${
-              tipoMensagem === "success" ? "text-green-600" : "text-red-500"
-            }`}
-          >
-            {mensagem}{" "}
-          </p>
-        )}
+        <h2 className="text-3xl font-bold text-cyan-300 mb-6">Registrar</h2>
 
         <input
           type="email"
-          name="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 mb-4 rounded bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400"
           required
         />
         <input
           type="password"
-          name="senha"
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 mb-6 rounded bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400"
           required
         />
 
-        {mensagem && (
-          <p className="text-center text-sm text-gray-600">{mensagem} </p>
-        )}
-
         <button
           type="submit"
-          className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
+          className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg shadow-md hover:shadow-cyan-500/30 transition-all duration-300"
         >
           Registrar
         </button>
 
-        <p className="text-center text-sm">
-          Já tem uma conta? {""}
-          <a href="/login" className="text-blue-500 hover:underline">
-            Fazer Login
+        <p className="text-sm text-gray-400 mt-4">
+          Já tem uma conta?{" "}
+          <a href="/login" className="text-cyan-400 hover:underline">
+            Fazer login
           </a>
         </p>
       </form>

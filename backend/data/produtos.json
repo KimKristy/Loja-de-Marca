@@ -9,7 +9,7 @@
   {
     "id": 3,
     "nome": "Jaqueta de Couro",
-    "preco": 299.9,
+    "preco": "300",
     "descricao": "Jaqueta de couro sintético preta",
     "imagem": "src/assets/jaquetadecouro.jpg"
   },
