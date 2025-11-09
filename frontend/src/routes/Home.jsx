@@ -27,7 +27,7 @@ const Home = () => {
         const produtosLocais = await resLocal.json();
 
         const todos = [...produtosLocais, ...produtosAPI];
-        setProdutos(todos.slice(-4)); // mostra só os 4 mais recentes
+        setProdutos(todos.slice(-6)); // mostra só os 4 mais recentes
       } catch (error) {
         console.error("Erro ao carregar produtos:", error);
       }
@@ -40,7 +40,7 @@ const Home = () => {
     <>
       <FundoFuturistico />
 
-      <div className="relative z-10 p-8 text-white bg-white/5 rounded-2xl shadow-xl border border-white/20 animate-fadeIn">
+      <div className="relative z-10 p-8 text-white bg-white/5 shadow-xl border border-white/20 animate-fadeIn">
         <div className="flex justify-center items-center mt-24 mb-12 w-full">
           <div className="bg-white/10 border border-cyan-500/30 backdrop-blur-md rounded-2xl px-8 py-6 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 text-center max-w-3xl">
             <h1 className="text-3xl font-bold text-cyan-300 mb-2">

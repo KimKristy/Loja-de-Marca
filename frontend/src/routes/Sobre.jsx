@@ -5,7 +5,7 @@ const Sobre = () => {
     <>
       <FundoFuturistico />
 
-      <div className="relative z-10 min-h-screen p-10 text-white bg-white/5 rounded-2xl shadow-xl border border-white/20 animate-fadeIn">
+      <div className="relative z-10 min-h-screen p-10 text-white bg-white/5 shadow-xl border border-white/20 animate-fadeIn">
         <div className="flex flex-col items-center justify-center mt-24 mb-12 text-center">
           <div className="bg-white/10 border border-cyan-500/30 backdrop-blur-md rounded-2xl px-10 py-8 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 max-w-4xl">
             <h1 className="text-3xl font-bold text-cyan-300 mb-4">

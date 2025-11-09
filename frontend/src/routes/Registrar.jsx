@@ -25,7 +25,7 @@ const Registrar = () => {
   };
 
   return (
-    <div className="relative z-10 min-h-screen flex items-center justify-center text-white bg-white/5 rounded-2xl border border-white/20 animate-fadeIn">
+    <div className="relative z-10 min-h-screen flex items-center justify-center text-white bg-white/5 border border-white/20 animate-fadeIn">
       <form
         onSubmit={handleRegister}
         className="bg-white/10 border border-cyan-500/30 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 w-full max-w-sm text-center"

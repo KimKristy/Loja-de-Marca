@@ -40,7 +40,7 @@ const Produtos = () => {
   return (
     <>
       <FundoFuturistico />
-      <div className="relative z-10 p-8 text-white bg-white/5 rounded-2xl shadow-xl border border-white/20 animate-fadeIn">
+      <div className="relative z-10 p-8 text-white bg-white/5 shadow-xl border border-white/20 animate-fadeIn">
         <div className="text-center mt-24 mb-10">
           <h1 className="text-3xl font-bold text-cyan-300 mb-2">
             Todos os Produtos
