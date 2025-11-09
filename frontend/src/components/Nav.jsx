@@ -29,6 +29,9 @@ const Nav = () => {
           >
             Home
           </Link>
+          <Link to="/produtos" className="hover:text-cyan-300 transition-all text-sm font-medium">
+            Produtos
+          </Link>
           <Link
             to="/sobre"
             className="hover:text-cyan-300 transition-all text-sm font-medium"
