@@ -36,16 +36,27 @@ O projeto conta com sistema de login, cadastro, CRUD de produtos e integração 
 ## 🧩 Estrutura do Projeto
 
 📦 projetolojamarca
+
 ├── 📁 backend
+
 │ ├── server.js
+
 │ └── data/
+
 │ ├── produtos.json
+
 │ └── usuarios.json
+
 ├── 📁 src
+
 │ ├── components/
+
 │ ├── routes/
+
 │ ├── config/
+
 │ └── App.jsx
+
 └── package.json
 
 ---
@@ -55,18 +66,24 @@ O projeto conta com sistema de login, cadastro, CRUD de produtos e integração 
 ### 🔹 Clonar o repositório
 
 git clone [https://github.com/usuario/loja-de-marcas.git](https://github.com/KimKristy/Loja-de-Marca.git)
+
 cd Loja-de-Marca
 
 
 🔹 Instalar as dependências do frontend
+
 npm install
 
 🔹 Rodar o frontend
+
 npm run dev
 
 🔹 Rodar o backend
+
 cd backend
+
 npm install
+
 npm start
 
 Acesse o projeto em:
@@ -74,5 +91,7 @@ Acesse o projeto em:
 
 
 
+
 💙 Desenvolvido por Kim Kristy
+
 Com dedicação, curiosidade e muito estilo futurista ✨
