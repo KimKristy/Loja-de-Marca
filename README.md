@@ -35,7 +35,7 @@ O projeto conta com sistema de login, cadastro, CRUD de produtos e integração 
 
 ## 🧩 Estrutura do Projeto
 
-📦 projeto-loja-marcas
+📦 projetolojamarca
 ├── 📁 backend
 │ ├── server.js
 │ └── data/
@@ -54,8 +54,8 @@ O projeto conta com sistema de login, cadastro, CRUD de produtos e integração 
 
 ### 🔹 Clonar o repositório
 
-git clone https://github.com/usuario/loja-de-marcas.git
-cd loja-de-marcas
+git clone [https://github.com/usuario/loja-de-marcas.git](https://github.com/KimKristy/Loja-de-Marca.git)
+cd Loja-de-Marca
 
 
 🔹 Instalar as dependências do frontend
