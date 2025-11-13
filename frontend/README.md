@@ -1,16 +1,79 @@
-# React + Vite
+# 🛍️ Loja de Marcas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um site de e-commerce moderno e futurista, desenvolvido com **React + Vite**, **Tailwind CSS**, **Node.js** e **Express**.  
+O projeto conta com sistema de login, cadastro, CRUD de produtos e integração com uma API real de produtos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades
 
-## React Compiler
+- ✨ Interface moderna com efeitos 3D e fundo animado
+- 🔐 Login e registro de usuários com hash de senha
+- 🛒 CRUD completo de produtos (Adicionar, Editar, Excluir, Listar)
+- 🌐 Integração com [Fake Store API](https://fakestoreapi.com/)
+- 👑 Sistema de permissão (botões especiais só para o gerente)
+- 🎨 Estilização 100% feita com **Tailwind CSS**
+- ⚡ Backend simples em Node.js com armazenamento local em JSON
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🖥️ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### **Frontend**
+- React + Vite  
+- React Router DOM  
+- Tailwind CSS  
+- React Three Fiber (para fundo futurista)
+
+### **Backend**
+- Node.js  
+- Express  
+- bcryptjs  
+- fs (para persistência local)
+
+---
+
+## 🧩 Estrutura do Projeto
+
+📦 projeto-loja-marcas
+├── 📁 backend
+│ ├── server.js
+│ └── data/
+│ ├── produtos.json
+│ └── usuarios.json
+├── 📁 src
+│ ├── components/
+│ ├── routes/
+│ ├── config/
+│ └── App.jsx
+└── package.json
+
+---
+
+## ⚙️ Como Rodar o Projeto
+
+### 🔹 Clonar o repositório
+
+git clone https://github.com/usuario/loja-de-marcas.git
+cd loja-de-marcas
+
+
+🔹 Instalar as dependências do frontend
+npm install
+
+🔹 Rodar o frontend
+npm run dev
+
+🔹 Rodar o backend
+cd backend
+npm install
+npm start
+
+Acesse o projeto em:
+👉 http://localhost:5173
+
+
+
+
+💙 Desenvolvido por Kim Kristy
+Com dedicação, curiosidade e muito estilo futurista ✨
